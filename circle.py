@@ -1,5 +1,4 @@
 import math
-'''Import module math that keeps math constants and formulas'''
 
 def area(r):
     '''Function get r radius of circle and return 2 * math.pi(3,14) * r^2
