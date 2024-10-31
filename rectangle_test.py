@@ -2,6 +2,8 @@ import unittest
 import rectangle
 
 class RectangleTestCase(unittest.TestCase):
+    # TestCase for rectangle.py
+
     def test_zero_mul(self):
         res = rectangle.area(10, 0)
         self.assertEqual(res, 0)
