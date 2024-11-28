@@ -3,10 +3,8 @@ name: Python Package using Conda
 on: [push]
 
 jobs:
-  build-linux:
+  test-on-linux:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 5
 
     steps:
     - uses: actions/checkout@v4
@@ -17,3 +15,18 @@ jobs:
     - name: Unit Tests
       run: |
         python -m unittest discover -p '*_test.py'
+  test-on-windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-veresion: '3.10'
+    - name: Unit Tests
+      run: |
+        python -m unittest discover -p '*_test.py'
+        
+
+        
