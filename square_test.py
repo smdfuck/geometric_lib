@@ -3,7 +3,7 @@ import square
 
 class SquareTestCase(unittest.TestCase):
     # TestCase for square.py
- 
+    
     def test_square_zero_area(self):
         res = square.area(0)
         self.assertEqual(res, 0)
