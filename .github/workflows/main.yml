@@ -1,32 +1,27 @@
-name: Unittests
+name: Python Package using Conda
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.operating-system }}
+  build-linux:
+    runs-on: ubuntu-latest
     strategy:
-      matrix:
-        include:
-          - operating-system: windows-latest
-            python-version: '3.13'
-
-          - operating-system: ubuntu-latest
-            python-version: '3.13'
+      max-parallel: 5
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Conda config
-        shell: bash -l {0}
-        run: echo -e "channels:\n  - conda-forge\n" > .condarc
-      - name: Setup Mambaforge
-        uses: conda-incubator/setup-miniconda@v3
-        with:
-          python-version: ${{ matrix.python-version }}
-          miniforge-version: latest
-          condarc-file: .condarc
-      - name: Test
-        shell: bash -l {0}
-        run: |
-          pip install versioneer[toml]==0.29
-          python -m unittest discover tests
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+    - name: Add conda to system path
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        echo $CONDA/bin >> $GITHUB_PATH
+    - name: Install dependencies
+      run: |
+        conda env update --file environment.yml --name base
+    - name: Unit Tests
+      run: |
+        conda install unittest
+        python -m unittests circle_test.py
