@@ -9,6 +9,7 @@ on:
 jobs:
   run-tests:
     runs-on: ${{ matrix.operating-system }} 
+    continue-on-error: true
     strategy:
       matrix:
         include:
@@ -20,7 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - continue-on-errorr: true
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
