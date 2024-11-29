@@ -1,8 +1,8 @@
 name: Testing
 
 on:
-  - push:
-    - paths-ignore:
+  push:
+    paths-ignore:
       - 'docs/**'
       - '.github/workflows/**'
 
