@@ -6,7 +6,7 @@ def area(a, h):
 
 def perimeter(a, b, c):
     '''Function get a, b, c sides of triangle and return a+b+c
-        - perimeter'''
+        - perimeter t'''
     if a < 0 or b < 0 or c < 0: return 0
     if a == 0 or b == 0 or c == 0: return 0
     return a + b + c

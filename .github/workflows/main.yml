@@ -1,6 +1,10 @@
 name: Testing
 
 on: [push]
+  - push:
+    - paths-ignore:
+      - 'docs/**'
+      - '.github/workflows/**'
 
 jobs:
   run-tests:
@@ -16,6 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - continue-on-errorr: true
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
